@@ -59,7 +59,7 @@ nav a:hover {
 }
 
 .content img {
-    margin-top: 1rem; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
+    margin-top: 20px; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
 }
 
 .title h1 {
