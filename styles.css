@@ -77,17 +77,24 @@ nav a:hover {
     width: 100%;
 }
 
-.centered-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 200px); /* 减去标题的高度 */
-    margin-top: 200px; /* 确保标题下方开始计算 */
+body {
+    position: relative;
+}
+
+.centered-form-overlay {
+    position: absolute;
+    top: 10%; /* 根据需求调整 */
+    left: 50%;
+    transform: translateX(-50%); /* 使其水平居中 */
+    z-index: 1; /* 确保它在其他背景元素之上 */
 }
 
 .name-input-container {
     text-align: center;
-    max-width: 400px; /* 可根据需要调整最大宽度 */
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.8); /* 为了看清内容，可添加一个透明背景 */
+    padding: 1rem;
+    border-radius: 5px; /* 可选，美化样式 */
 }
 
 .footer-svg {
