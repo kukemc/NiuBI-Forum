@@ -3,6 +3,7 @@ let posts = []; // 这里不再手动填充数据，而是从API获取
 // 提交帖子
 function submitPost() {
     let postContent = document.getElementById('nameInput').value + ':' + document.getElementById('postContent').value;
+    console.log(postContent)
     if (postContent.trim() === '') {
         alert('帖子内容不能为空！');
         return;
@@ -23,20 +24,20 @@ function submitPost() {
         },
         body: JSON.stringify(postData) // 将postData转换为JSON字符串发送
     })
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })    
-        .then(data => {
+        。then(data => {
             console.log(data);
             // 获取最新帖子列表（这里假设API会在成功创建帖子后返回最新的帖子列表）
             // getPostsFromAPI().then(displayPosts);
             // 或者直接刷新页面以获取最新帖子
             location.reload();
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 
@@ -66,20 +67,20 @@ function replyPost(postId) {
         },
         body: JSON.stringify(postData) // 将postData转换为JSON字符串发送
     })
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(data => {
+        。then(data => {
             console.log(data);
             // 获取最新帖子列表（这里假设API会在成功创建回复后返回最新的帖子列表）
             // getPostsFromAPI().then(displayPosts);
             // 或者直接刷新页面以获取最新帖子
             location.reload();
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
@@ -87,26 +88,26 @@ function replyPost(postId) {
 // 获取帖子并展示
 function getPostsFromAPI() {
     return fetch('https://api-save.kuke.ink/api/posts')
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(data => {
+        。then(data => {
             posts = data.map(post => ({
                 content: post.content,
                 replies: []
             }));
             return posts;
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
 
 // 调用获取帖子的函数并展示
-getPostsFromAPI().then(displayPosts);
+getPostsFromAPI()。then(displayPosts);
 
 // 展示帖子
 function displayPosts(posts = []) {
