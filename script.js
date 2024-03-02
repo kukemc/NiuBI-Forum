@@ -3,7 +3,7 @@ let posts = []; // 这里不再手动填充数据，而是从API获取
 // 提交帖子
 function submitPost() {
     let postContent = document.getElementById('nameInput').value + ':' + document.getElementById('postContent').value;
-    console.log(postContent);
+    console.log(document.getElementById('nameInput').value + ':' + document.getElementById('postContent').value);
     if (postContent.trim() === '') {
         alert('帖子内容不能为空！');
         return;
