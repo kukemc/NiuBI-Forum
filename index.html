@@ -5,6 +5,17 @@
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="cs2d.ico">
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         nav ul {
             list-style-type: none;
         }
@@ -15,14 +26,33 @@
         }
 
         nav li {
-            float: left;
+            display: inline-block;
         }
-        img {
-            display: inline-block; 
-            vertical-align: middle; 
+
+        .container {
+            display: flex;
+            min-height: 100%;
+            padding-bottom: 40px; /* 保证底部栏不会被内容遮挡 */
         }
-        nav a:hover {
-            color: blue;
+
+        .menu {
+            background-color: #FFD700;
+            width: 20%;
+            padding: 1rem;
+        }
+
+        .content {
+            background-color: #808080;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title h1 {
+            color: yellow;
+            margin: 0;
         }
 
         .footer {
@@ -33,7 +63,6 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .footer-svg {
@@ -48,21 +77,22 @@
     </style>
 </head>
 <body>
-    <div id="menu" style="background-color:#FFD700;height:900px;width:200px;float:left;">
-        <b>CS2D中文站</b><br>
-        <i>
-        <nav>
-            <ul>
-                <li><a href="关于cs2d.html">关于cs2d</a></li>
-                <br/>
-                <li><a href="玩家论坛.html">玩家论坛</a></li>
-            </ul>
-        </nav>
-    </div>
-    </i>
-    <div class="title" style="background-color: #808080; height: 200px; width: 1450px; float: left; ">
-        <img src="cs2d.ico" width="50" height="50" />
-        <h1 style="color:yellow">欢迎来到CS2D中文站！<h1>
+    <div class="container">
+        <div class="menu">
+            <b>CS2D中文站</b><br>
+            <i>
+            <nav>
+                <ul>
+                    <li><a href="关于cs2d.html">关于cs2d</a></li>
+                    <li><a href="玩家论坛.html">玩家论坛</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="content">
+            <img src="cs2d.ico" width="50" height="50" />
+            <h1>欢迎来到CS2D中文站！</h1>
+        </div>
     </div>
 
     <!-- 新增底部栏 -->
