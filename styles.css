@@ -77,6 +77,19 @@ nav a:hover {
     width: 100%;
 }
 
+.centered-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px); /* 减去标题的高度 */
+    margin-top: 200px; /* 确保标题下方开始计算 */
+}
+
+.name-input-container {
+    text-align: center;
+    max-width: 400px; /* 可根据需要调整最大宽度 */
+}
+
 .footer-svg {
     cursor: pointer;
     fill: white;
