@@ -44,10 +44,6 @@ nav a:hover {
     padding: 1rem;
 }
 
-.content img {
-    margin-top: 1rem; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
-}
-
 .content {
     background-color: #808080;
     flex: 1;
@@ -62,9 +58,8 @@ nav a:hover {
     justify-content: center;
 }
 
-.content {
-    background-color: #808080;
-
+.content img {
+    margin-top: 1rem; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
 }
 
 .title h1 {
