@@ -51,6 +51,16 @@ nav a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    background-color: #808080;
+
 }
 
 .title h1 {
