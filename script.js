@@ -1,4 +1,4 @@
-let posts = [];
+let posts = []; // 这里不再手动填充数据，而是从API获取
 
 // 提交帖子
 function submitPost() {
@@ -7,23 +7,19 @@ function submitPost() {
         alert('帖子内容不能为空！');
         return;
     }
-    posts.push({
-        content: postContent,
-        replies: []
-    });
-    displayPosts();
-    document.getElementById('postContent').value = ''; 
+
     // 构建POST请求的数据
     const postData = {
         content: postContent
     };
 
-    // 使用fetch发送POST请求
-    fetch('http://localhost:3000/', { // 替换为服务器上的实际端点
+    // 使用fetch发送POST请求到远程API
+    fetch('https://api-save.kuke.ink/api/posts', { // 替换为远程API的实际端点
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer your-token'
+            // 根据实际情况添加或移除Authorization Header
+            // 'Authorization': 'Bearer your-token'
         },
         body: JSON.stringify(postData) // 将postData转换为JSON字符串发送
     })
@@ -35,31 +31,38 @@ function submitPost() {
         })    
         .then(data => {
             console.log(data);
-            displayPosts()
-            // 可以在这里处理服务器返回的数据，比如显示成功消息或者刷新帖子列表
+            // 获取最新帖子列表（这里假设API会在成功创建帖子后返回最新的帖子列表）
+            // getPostsFromAPI().then(displayPosts);
+            // 或者直接刷新页面以获取最新帖子
+            location.reload();
         })
         .catch(error => {
             console.error('发送请求时出错:', error);
         });
 
+    document.getElementById('postContent').value = '';
 }
 
-
 // 回复帖子
-function replyPost(postIndex) {
+function replyPost(postId) {
     let replyContent = prompt('请输入回复内容:');
     if (replyContent === null || replyContent.trim() === '') {
         return;
     }
-    console.log(replyContent);
+
     const postData = {
-        content: replyContent
+        content: replyContent,
+        // 假设需要在请求体中包含被回复的帖子ID
+        postId: postId
     };
-    fetch('http://localhost:3000/a' , { // 替换为服务器上的实际端点
+
+    // 使用fetch发送POST请求到远程API（假设回复接口是 /api/reply）
+    fetch('https://api-save.kuke.ink/api/reply', { // 替换为远程API的实际端点
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer your-token'
+            // 根据实际情况添加或移除Authorization Header
+            // 'Authorization': 'Bearer your-token'
         },
         body: JSON.stringify(postData) // 将postData转换为JSON字符串发送
     })
@@ -71,67 +74,56 @@ function replyPost(postIndex) {
         })
         .then(data => {
             console.log(data);
-            displayPosts()
-            // 可以在这里处理服务器返回的数据，比如显示成功消息或者刷新帖子列表
+            // 获取最新帖子列表（这里假设API会在成功创建回复后返回最新的帖子列表）
+            // getPostsFromAPI().then(displayPosts);
+            // 或者直接刷新页面以获取最新帖子
+            location.reload();
         })
         .catch(error => {
             console.error('发送请求时出错:', error);
         });
-
-    posts[postIndex].replies.push(replyContent);
-    displayPosts();
 }
 
-// 展示帖子
-function displayPosts() {
-    let postsContainer = document.getElementById('posts');
-    postsContainer.innerHTML = ''; // 清空内容
-
-    posts.forEach((post, index) => {
-        let postElement = document.createElement('div');
-        postElement.classList.add('post');
-        postElement.innerHTML = `
-            <div class="post-content">${post.content}</div>
-            <button onclick="replyPost(${index})">回复</button>
-        `;
-
-        // 添加回复内容
-        if (post.replies.length > 0) {
-            let replyElement = document.createElement('div');
-            replyElement.classList.add('reply-content');
-            replyElement.innerHTML = post.replies.map(reply => `<div>${reply}</div>`).join(''); // 修正此行
-            postElement.appendChild(replyElement); // 添加回复内容到帖子元素中
-        }
-
-        postsContainer.appendChild(postElement); // 将帖子元素添加到容器中
-    });
-}
-
-function gethttp() {
-    fetch('http://localhost:3000/')
+// 获取帖子并展示
+function getPostsFromAPI() {
+    return fetch('https://api-save.kuke.ink/api/posts')
         .then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(asd => {
-            const obj = asd;
-            console.log(asd); // 处理获取到的帖子数据
-            for (const key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    posts.push({
-                        content: obj[key].content,
-                        replies: []
-                    });
-                }
-            }
-            
-            displayPosts();
+        .then(data => {
+            posts = data.map(post => ({
+                content: post.content,
+                replies: []
+            }));
+            return posts;
         })
         .catch(error => {
             console.error('发送请求时出错:', error);
         });
-
 }
-gethttp();
+
+// 调用获取帖子的函数并展示
+getPostsFromAPI().then(displayPosts);
+
+// 展示帖子
+function displayPosts(posts = []) {
+    let postsContainer = document.getElementById('posts');
+    postsContainer.innerHTML = '';
+
+    posts.forEach((post, index) => {
+        let postElement = document.createElement('div');
+        postElement.classList.add('post');
+        postElement.innerHTML = `
+            <div class="post-content">${post.content}</div>
+            <button onclick="replyPost('${post.id}')">回复</button>
+        `;
+
+        // 在这里展示回复（假设API返回的帖子数据中包含了回复）
+        // ...
+        
+        postsContainer.appendChild(postElement);
+    });
+}
