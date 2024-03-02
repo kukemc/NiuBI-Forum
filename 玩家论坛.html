@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <title>玩家论坛</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="cs2d.ico">
+    <style>
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        nav a:hover {
+            color: blue;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #postForm {
+            margin-bottom: 20px;
+        }
+
+        #postContent {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        #posts {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .post {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .post-content {
+            margin-bottom: 5px;
+        }
+
+        .reply-content {
+            margin-left: 20px;
+            border-left: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="menu" style="background-color:#FFD700;height:900px;width:200px;float:left;">
+        <b>菜单</b><br>
+        <i>
+            <nav>
+                <ul>
+                    <li><a href="cs2d中文站主页.html">返回主页</a></li>
+                    <br />
+                    <li><a href="关于cs2d.html">关于cs2d</a></li>
+                    <br />
+                    <li><a href="玩家论坛.html">玩家论坛</a></li>
+                </ul>
+            </nav>
+    </div>
+    </i>
+    <div class="title" style="background-color: #808080; height: 200px; width: 1650px; float: left; ">
+        <img src="cs2d.ico" width="50" height="50" />
+        <h1 style="color:yellow">欢迎来到CS2D中文站！<h1>
+        <h2 style="color:yellow">目前回复帖子有点bug，请谅解！</h2>
+    </div>
+
+    <div class="container">
+        <h1>玩家论坛</h1>
+        <div id="postForm">
+            <textarea id="postContent" placeholder="发表你的帖子"></textarea>
+            <button onclick="submitPost()">发表</button>
+        </div>
+        <div id="posts">
+            <!-- 这里动态添加帖子 -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
