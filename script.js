@@ -91,21 +91,18 @@ function getPostsFromAPI() {
             return response.json();
         })
         .then(data => {
-            posts = data.map(post => ({
-                content: post.content,
-                replies: [],
-                // 假设id字段用于区分帖子
-                id: post.id
-            }));
-            return posts;
+            // 直接返回从API获取的原始数据，不要重置replies为[]
+            return data;
         })
         .catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
 
-// 调用获取帖子的函数并展示
-getPostsFromAPI().then(displayPosts);
+// 调用getPostsFromAPI后直接传入displayPosts
+getPostsFromAPI().then(posts => {
+    displayPosts(posts);
+});
 
 // 展示帖子
 function displayPosts(posts = []) {
