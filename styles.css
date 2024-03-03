@@ -129,6 +129,10 @@ body {
 
   .post-content {
       white-space: pre-wrap; /* 或者 white-space: pre-line; */
+      margin-bottom: 5px;
+      word-break: break-all; /* 或者使用 word-wrap: break-word; （在较旧的浏览器中使用）*/
+      max-width: 500px; /* 根据需求设置最大宽度 */
+      overflow-wrap: break-word; /* 确保长单词也能换行 */
   }
   }
 
