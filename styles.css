@@ -143,16 +143,19 @@ body {
   }
 
 .body-container {
-    display: flex;
     min-height: 100vh;
-    flex-direction: column;
+    position: relative; /* 确保body或其他特定容器有relative定位 */
 }
 
-.container {
-    flex-grow: 1; /* 主要内容区域占用剩余空间，使得底部栏始终在下方 */
+.content-container {
+    /* 如果需要，可以设置padding-bottom，预留出底部栏的空间 */
+    /* padding-bottom: 60px; */
 }
 
 .footer {
-    margin-top: auto; /* 自动分配剩余空间，使底部栏始终在底部 */
+    position: absolute;
+    bottom: 0; /* 使底部栏始终位于底部 */
+    left: 0;
+    right: 0; /* 使其填满整个宽度 */
     /* 其他底部栏样式... */
 }
