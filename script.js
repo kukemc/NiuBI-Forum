@@ -158,10 +158,10 @@ function displayPosts(posts = []) {
 function showModal(message) {
     console.log("卧槽真牛逼弹窗", message);
   $('#modal-message').text(message);
-  $('#modal').removeClass('hidden').addClass('animate-modal'); // 假设'.animate-modal'类包含动画关键帧
+  $('#modal').removeClass('hidden animate-hide').addClass('animate-modal');
   
   $('#confirm-button').on('click', function() {
-    $('#modal').addClass('hidden');
+    $('#modal').removeClass('animate-modal').addClass('animate-hide');
   });
 }
 
