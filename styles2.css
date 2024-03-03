@@ -285,9 +285,9 @@ body {
 .reply-content {
     background-color: #f0f0f0; /* 更改颜色以符合您所需的灰色 */
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-top: 5px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     line-height: 1.5;
 }
 
@@ -295,9 +295,27 @@ body {
 .reply-content::before {
     content: "";
     display: block;
-    border-left: 4px solid #ccc;
+    border-left: 5px solid #ccc;
     height: 100%;
-    margin-top: -5px;
-    margin-left: -10px;
     pointer-events: none;
+}
+
+.reply-button {
+    background-color: #4CAF50; /* 绿色背景色 */
+    border: none;
+    color: white; /* 文字颜色为白色 */
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+}
+
+.reply-button:hover {
+    background-color: #45a049; /* 鼠标悬停时背景颜色加深 */
+    opacity: 0.9;
 }
