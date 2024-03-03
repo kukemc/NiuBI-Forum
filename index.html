@@ -19,34 +19,7 @@
             </nav>
         </div>
         </div>
-         <div class="name-input-container">
-            <label for="nameInput">请输入你的名字：</label>
-            <input type="text" id="nameInput">
-            <button onclick="saveName()">保存</button>
-        </div>
-    </div>
-    <script>
-        // 从 Cookie 中获取已保存的名字
-        function getCookie(name) {
-            const cookieValue = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-            return cookieValue ? cookieValue[2] : null;
-        }
-
-        // 保存名字到 Cookie
-        function saveName() {
-            const name = document.getElementById("nameInput").value;
-            document.cookie = "userName=" + name + "; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
-            alert("名字已保存！");
-        }
-
-        // 在页面加载时检查是否有保存的名字，并填充输入框
-        window.onload = function() {
-            const savedName = getCookie("userName");
-            if (savedName) {
-                document.getElementById("nameInput").value = savedName;
-            }
-        };
-    </script>
+     
         <div class="content">
             <img src="cs2d.ico" width="50" height="50" />
             <h1>欢迎来到CS2D中文站！</h1>
