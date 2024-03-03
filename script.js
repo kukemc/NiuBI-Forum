@@ -2,7 +2,7 @@ let posts = []; // 这里不再手动填充数据，而是从API获取
 
 // 提交帖子
 function submitPost() {
-    let postContent = document.getElementById('nameInput').value + ':' + document.getElementById('postContent').value;
+    let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
     console.log(postContent);
     if (postContent.trim() === '') {
         alert('帖子内容不能为空！');
@@ -24,18 +24,18 @@ function submitPost() {
         },
         body: JSON.stringify(postData)
     })
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(data => {
+        。then(data => {
             console.log(data);
             // 直接获取最新帖子列表并更新显示
             getPostsFromAPI().then(displayPosts);
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 
@@ -65,18 +65,18 @@ function replyPost() {
         },
         body: JSON.stringify(postData)
     })
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(data => {
+        。then(data => {
             console.log(data);
             // 直接获取最新帖子列表并更新显示
             getPostsFromAPI().then(displayPosts);
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
@@ -84,13 +84,13 @@ function replyPost() {
 // 获取帖子并展示
 function getPostsFromAPI() {
     return fetch('https://api-save.kuke.ink/api/posts')
-        .then(response => {
+        。then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        .then(data => {
+        。then(data => {
             posts = data.map(post => ({
                 content: post.content,
                 replies: [],
@@ -99,13 +99,13 @@ function getPostsFromAPI() {
             }));
             return posts;
         })
-        .catch(error => {
+        。catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
 
 // 调用获取帖子的函数并展示
-getPostsFromAPI().then(displayPosts);
+getPostsFromAPI()。then(displayPosts);
 
 // 展示帖子
 function displayPosts(posts = []) {
