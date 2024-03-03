@@ -1,9 +1,9 @@
 /* styles.css */
 html, body {
-    display: flex;
     margin: 0;
     padding: 0;
     font-size: 16px;
+    height: 100%; /* 添加高度为100%，确保整个文档视口高度都被占据 */
 }
 
 * {
@@ -144,15 +144,17 @@ body {
 
 .body-container {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
-    flex-grow: 1; /* 主要内容区域占用剩余空间，使得底部栏始终在下方 */
+    display: flex;
+    flex-grow: 1;
+    overflow-y: auto; /* 添加滚动条，防止内容溢出 */
 }
 
 .footer {
-    margin-top: auto; /* 自动分配剩余空间，使底部栏始终在底部 */
+    margin-top: auto; /* 保持在底部 */
     /* 其他底部栏样式... */
 }
