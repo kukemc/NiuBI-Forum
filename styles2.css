@@ -3,7 +3,6 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 16px;
-    height: 100%; /* 添加高度为100%，确保整个文档视口高度都被占据 */
 }
 
 * {
