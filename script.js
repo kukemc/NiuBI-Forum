@@ -40,6 +40,7 @@ function submitPost() {
         });
 
     document.getElementById('postContent').value = '';
+    alert("帖子已发出！");
 }
 
 // 回复帖子
