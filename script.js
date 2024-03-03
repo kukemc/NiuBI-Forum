@@ -24,18 +24,18 @@ function submitPost() {
         },
         body: JSON.stringify(postData)
     })
-        。then(response => {
+        .then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        。then(data => {
+        .then(data => {
             console.log(data);
             // 直接获取最新帖子列表并更新显示
             getPostsFromAPI().then(displayPosts);
         })
-        。catch(error => {
+        .catch(error => {
             console.error('发送请求时出错:', error);
         });
 
@@ -65,18 +65,18 @@ function replyPost() {
         },
         body: JSON.stringify(postData)
     })
-        。then(response => {
+        .then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        。then(data => {
+        .then(data => {
             console.log(data);
             // 直接获取最新帖子列表并更新显示
             getPostsFromAPI().then(displayPosts);
         })
-        。catch(error => {
+        .catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
@@ -84,13 +84,13 @@ function replyPost() {
 // 获取帖子并展示
 function getPostsFromAPI() {
     return fetch('https://api-save.kuke.ink/api/posts')
-        。then(response => {
+        .then(response => {
             if (!response.ok) {
                 throw new Error('网络响应不正常');
             }
             return response.json();
         })
-        。then(data => {
+        .then(data => {
             posts = data.map(post => ({
                 content: post.content,
                 replies: [],
@@ -99,7 +99,7 @@ function getPostsFromAPI() {
             }));
             return posts;
         })
-        。catch(error => {
+        .catch(error => {
             console.error('发送请求时出错:', error);
         });
 }
@@ -122,7 +122,7 @@ function displayPosts(posts = []) {
         `;
         // 在这里展示回复（假设API返回的帖子数据中包含了回复）
         // ...
-
+        
         postsContainer.appendChild(postElement);
     });
 }
