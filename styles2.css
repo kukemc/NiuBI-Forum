@@ -319,3 +319,39 @@ body {
     background-color: #45a049; /* 鼠标悬停时背景颜色加深 */
     opacity: 0.9;
 }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  text-align: center;
+}
+
+.btn-confirm {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-confirm:hover {
+  background-color: #45a049;
+  opacity: 0.9;
+}
+
+.hidden {
+  display: none;
+}
