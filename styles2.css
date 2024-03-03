@@ -355,3 +355,16 @@ body {
 .hidden {
   display: none;
 }
+
+/* 隐藏并准备淡入淡出动画 */
+#modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 动画状态 */
+#modal.animate-modal {
+  opacity: 1;
+  visibility: visible;
+}
