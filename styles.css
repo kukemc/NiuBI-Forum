@@ -141,3 +141,18 @@ body {
       border-left: 1px solid #ccc;
       padding-left: 10px;
   }
+
+.body-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    flex-grow: 1; /* 主要内容区域占用剩余空间，使得底部栏始终在下方 */
+}
+
+.footer {
+    margin-top: auto; /* 自动分配剩余空间，使底部栏始终在底部 */
+    /* 其他底部栏样式... */
+}
