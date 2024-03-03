@@ -1,5 +1,6 @@
 /* styles.css */
 html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -44,7 +45,21 @@ nav a:hover {
 }
 
 .content {
-    /* 清理冗余样式 */
+    background-color: #808080;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content img {
+    margin-top: 20px; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
 }
 
 .title h1 {
@@ -68,18 +83,18 @@ body {
 
 .centered-form-overlay {
     position: absolute;
-    top: 10%;
+    top: 10%; /* 根据需求调整 */
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+    transform: translateX(-50%); /* 使其水平居中 */
+    z-index: 1; /* 确保它在其他背景元素之上 */
 }
 
 .name-input-container {
     text-align: center;
     max-width: 400px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8); /* 为了看清内容，可添加一个透明背景 */
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 5px; /* 可选，美化样式 */
 }
 
 .footer-svg {
@@ -91,106 +106,53 @@ body {
 .footer-svg:hover {
     fill: lightblue;
 }
+  #postForm {
+      margin-bottom: 20px;
+  }
 
-#postForm {
-    margin-bottom: 20px;
-}
+  #postContent {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+  }
 
-#postContent {
-    width: 100%;
-    height: 100px;
-    margin-bottom: 10px;
-}
+  #posts {
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
 
-#posts {
-    border: 1px solid #ccc;
-    padding: 10px;
-}
+  .post {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+  }
 
-.post {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
+  .post-content {
+      white-space: pre-wrap; /* 或者 white-space: pre-line; */
+      margin-bottom: 5px;
+      word-break: break-all; /* 或者使用 word-wrap: break-word; （在较旧的浏览器中使用）*/
+      max-width: 500px; /* 根据需求设置最大宽度 */
+      overflow-wrap: break-word; /* 确保长单词也能换行 */
+  }
+  }
 
-.post-content {
-    white-space: pre-wrap;
-    margin-bottom: 5px;
-    word-break: break-all;
-    max-width: 500px;
-    overflow-wrap: break-word;
-}
-
-.reply-content {
-    margin-left: 20px;
-    border-left: 1px solid #ccc;
-    padding-left: 10px;
-}
+  .reply-content {
+      margin-left: 20px;
+      border-left: 1px solid #ccc;
+      padding-left: 10px;
+  }
 
 .body-container {
     display: flex;
     min-height: 100vh;
-}
-
-.main-container {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 20%;
-    background-color: #FFD700;
-    padding: 1rem;
-}
-
-.content-container {
-    flex: 1;
-    padding: 1rem;
-    display: flex;
     flex-direction: column;
 }
 
-.forum-container {
-    margin-top: 2rem;
-    background-color: #f5f5f5;
-    padding: 1rem;
-    border-radius: 5px;
+.container {
+    flex-grow: 1; /* 主要内容区域占用剩余空间，使得底部栏始终在下方 */
 }
 
-#postForm textarea {
-    width: 100%;
-    height: 100px;
-    resize: vertical;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#postForm button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#postForm button:hover {
-    background-color: #0056b3;
-}
-
-/* 响应式布局 */
-@media screen and (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
-    }
-
-    .sidebar,
-    .content-container {
-        width: 100%;
-    }
+.footer {
+    margin-top: auto; /* 自动分配剩余空间，使底部栏始终在底部 */
+    /* 其他底部栏样式... */
 }
