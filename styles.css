@@ -106,3 +106,33 @@ body {
 .footer-svg:hover {
     fill: lightblue;
 }
+  #postForm {
+      margin-bottom: 20px;
+  }
+
+  #postContent {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+  }
+
+  #posts {
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+
+  .post {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+  }
+
+  .post-content {
+      margin-bottom: 5px;
+  }
+
+  .reply-content {
+      margin-left: 20px;
+      border-left: 1px solid #ccc;
+      padding-left: 10px;
+  }
