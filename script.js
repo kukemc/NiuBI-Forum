@@ -109,6 +109,7 @@ getPostsFromAPI().then(displayPosts);
 
 // 展示帖子
 function displayPosts(posts = []) {
+    console.log("帖子数据:", posts);
     let postsContainer = document.getElementById('posts');
     postsContainer.innerHTML = '';
 
