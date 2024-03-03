@@ -280,3 +280,24 @@ body {
     background-color: #004085;
     opacity: 0.9;
 }
+
+/* CSS样式添加到您的样式表中 */
+.reply-content {
+    background-color: #f0f0f0; /* 更改颜色以符合您所需的灰色 */
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* 如果需要引用线 */
+.reply-content::before {
+    content: "";
+    display: block;
+    border-left: 4px solid #ccc;
+    height: 100%;
+    margin-top: -5px;
+    margin-left: -10px;
+    pointer-events: none;
+}
