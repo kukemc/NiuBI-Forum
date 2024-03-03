@@ -81,7 +81,7 @@ nav a:hover {
     background-color: #333;
     color: white;
     padding: 1rem;
-    position: absolute;
+    /* position: absolute; */
     text-align: center;
     bottom: 0;
     width: 100%;
