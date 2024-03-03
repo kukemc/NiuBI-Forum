@@ -116,8 +116,10 @@ function displayPosts(posts = []) {
         postElement.classList.add('post');
         postElement.dataset.postId = post.id; // 添加postId作为数据属性以便后续操作
         postElement.innerHTML = `
-            <div class="post-content" style="max-width: 600px;">${post.content}</div>
-            <button onclick="replyPost('${post.id}')">回复</button>
+            <div style="max-width:600px;">
+                <div class="post-content">${post.content}</div>
+                <button onclick="replyPost('${post.id}')">回复</button>
+            </div>
         `;
 
         // 在这里展示回复（假设API返回的帖子数据中包含了回复）
