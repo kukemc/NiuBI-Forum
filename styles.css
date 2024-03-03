@@ -129,6 +129,7 @@ body {
 
   .post-content {
       margin-bottom: 5px;
+      max-width:650px;
   }
 
   .reply-content {
