@@ -157,13 +157,35 @@ function displayPosts(posts = []) {
 // 弹窗函数
 function showModal(message) {
     console.log("卧槽真牛逼弹窗", message);
-  $('#modal-message').text(message);
-  $('#modal').removeClass('hidden animate-hide').addClass('animate-modal');
-  
+    $('#modal-message').text(message);
+    
+    // 移除隐藏和隐藏动画类，添加显示动画类
+    $('#modal')
+      .removeClass('hidden animate-hide')
+      .addClass('animate-modal')
+      // 确保模态框内容加载完成后再执行动画（可选）
+      .css('opacity', '0')
+      .one('transitionend', function() {
+        $(this).css('opacity', '');
+      });
+
+    // 重新绑定确认按钮事件，以处理隐藏动画
+    $('#confirm-button').off('click').on('click', function() {
+      $('#modal')
+        .removeClass('animate-modal')
+        .addClass('animate-hide');
+    });
+}
+
+// 当页面加载完成后（或者在DOM准备好之后），初始化确认按钮事件
+$(document).ready(function() {
   $('#confirm-button').on('click', function() {
     $('#modal').removeClass('animate-modal').addClass('animate-hide');
   });
-}
+});
+
+// 示例调用
+showModal('这是要展示的消息');
 
 // 示例调用
 showModal('这是一条提示信息！');
