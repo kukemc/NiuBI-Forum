@@ -128,11 +128,7 @@ body {
   }
 
   .post-content {
-      margin-bottom: 5px;
-      /* 移除或注释掉下面这行，以允许换行 */
-      /* white-space: nowrap; */
-      width: auto;
-      max-width: 100%; /* 或者具体的宽度数值，如 max-width: 500px; */
+      white-space: pre-wrap; /* 或者 white-space: pre-line; */
   }
   }
 
