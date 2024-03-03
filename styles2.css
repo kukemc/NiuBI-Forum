@@ -39,6 +39,13 @@ nav a:hover {
     justify-content: space-between;
 }
 
+.containernb {
+    width: 100%;
+    max-width: 800px; /* 按需调整宽度 */
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .menu {
     background-color: #FFD700;
     width: 20%;
