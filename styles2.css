@@ -320,7 +320,7 @@ body {
     opacity: 0.9;
 }
 
-.modal {
+#modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -331,6 +331,8 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: center;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .btn-confirm {
@@ -364,7 +366,17 @@ body {
 }
 
 /* 动画状态 */
+
+/* 当添加.animate-modal类时，淡入动画生效 */
 #modal.animate-modal {
   opacity: 1;
   visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 添加一个新的类用于淡出动画 */
+#modal.animate-hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
 }
