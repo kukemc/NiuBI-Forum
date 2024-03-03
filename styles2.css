@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 16px;
-    background-image: #F7F8FC; /* 浅灰色背景 */
+    background-color: #F7F8FC; /* 浅灰色背景 */
 }
 
 * {
@@ -36,6 +36,7 @@ nav a:hover {
     display: flex;
     min-height: 100%;
     /* padding-bottom: 40px; */ /* 保证底部栏不会被内容遮挡 */
+    justify-content: space-between;
 }
 
 .menu {
