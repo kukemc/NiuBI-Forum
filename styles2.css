@@ -331,8 +331,13 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: center;
+  transform: translate(-50%, -50%) scale(0.1);
+  /* 在未显示时保持缩小状态 */
   opacity: 0;
   visibility: hidden;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* 使用弹性曲线 */
 }
 
 .btn-confirm {
@@ -368,15 +373,16 @@ body {
 /* 动画状态 */
 
 /* 当添加.animate-modal类时，淡入动画生效 */
+/* 显示并执行缩放与淡入动画 */
 #modal.animate-modal {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.5s ease-in-out;
+  transform: translate(-50%, -50%) scale(1); /* 这里恢复到正常尺寸 */
 }
 
-/* 添加一个新的类用于淡出动画 */
+/* 隐藏并执行淡出与缩放动画 */
 #modal.animate-hide {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s ease-in-out;
+  transform: translate(-50%, -50%) scale(0.1); /* 再次缩回最小尺寸 */
 }
