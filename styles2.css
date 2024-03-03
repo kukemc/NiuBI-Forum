@@ -1,0 +1,211 @@
+/* styles.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    height: 100%; /* 添加高度为100%，确保整个文档视口高度都被占据 */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: blue;
+}
+
+.nav {
+    list-style-type: none;
+}
+
+.nav li {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.container {
+    display: flex;
+    min-height: 100%;
+    padding-bottom: 40px; /* 保证底部栏不会被内容遮挡 */
+}
+
+.menu {
+    background-color: #FFD700;
+    width: 20%;
+    padding: 1rem;
+}
+
+.content {
+    background-color: #808080;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    display: flex;
+    min-height: calc(100vh - 100px); /* 确保减去 header 和 footer 的高度 */
+    padding: 1rem;
+}
+
+.forum-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%; /* 根据需求调整宽度 */
+    max-width: 800px;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选，添加阴影效果 */
+}
+
+.content img {
+    margin-top: 20px; /* 或者根据需求设置适当的像素值，例如：margin-top: 20px; */
+}
+
+.title h1 {
+    color: yellow;
+    margin: 0;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+    position: relative;
+}
+
+.centered-form-overlay {
+    position: absolute;
+    top: 10%; /* 根据需求调整 */
+    left: 50%;
+    transform: translateX(-50%); /* 使其水平居中 */
+    z-index: 1; /* 确保它在其他背景元素之上 */
+}
+
+.name-input-container {
+    text-align: center;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.8); /* 为了看清内容，可添加一个透明背景 */
+    padding: 1rem;
+    border-radius: 5px; /* 可选，美化样式 */
+}
+
+.footer-svg {
+    cursor: pointer;
+    fill: white;
+    transition: fill 0.3s ease-in-out;
+}
+
+.footer-svg:hover {
+    fill: lightblue;
+}
+  #postForm {
+      margin-bottom: 20px;
+  }
+
+  #postContent {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 10px;
+  }
+
+  #posts {
+      border: 1px solid #ccc;
+      padding: 10px;
+  }
+
+  .post {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+  }
+
+  .post-content {
+      white-space: pre-wrap; /* 或者 white-space: pre-line; */
+      margin-bottom: 5px;
+      word-break: break-all; /* 或者使用 word-wrap: break-word; （在较旧的浏览器中使用）*/
+      max-width: 500px; /* 根据需求设置最大宽度 */
+      overflow-wrap: break-word; /* 确保长单词也能换行 */
+  }
+  }
+
+  .reply-content {
+      margin-left: 20px;
+      border-left: 1px solid #ccc;
+      padding-left: 10px;
+  }
+
+.body-container {
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex-grow: 1;
+    overflow-y: auto; /* 添加滚动条，防止内容溢出 */
+}
+
+.footer {
+    margin-top: auto; /* 保持在底部 */
+    /* 其他底部栏样式... */
+}
+
+/* 论坛帖子输入框及按钮样式 */
+#postForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px; /* 可根据实际需求调整 */
+    margin: 0 auto;
+}
+
+#postContent {
+    width: 100%;
+    height: 150px; /* 根据需要自定义高度 */
+    padding: 1rem;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    resize: vertical;
+}
+
+#postForm button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#postForm button:hover {
+    background-color: #0056b3;
+}
+
+/* 可选：当按钮被点击时的样式 */
+#postForm button:active {
+    background-color: #004085;
+    opacity: 0.9;
+}
