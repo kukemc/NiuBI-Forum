@@ -115,14 +115,34 @@ function displayPosts(posts = []) {
     posts.forEach((post, index) => {
         let postElement = document.createElement('div');
         postElement.classList.add('post');
-        postElement.dataset.postId = post.id; // 添加postId作为数据属性以便后续操作
-        postElement.innerHTML = `
-            <div class="post-content">${post.content}</div>
-            <button onclick="replyPost('${post.id}')">回复</button>
-        `;
-        // 在这里展示回复（假设API返回的帖子数据中包含了回复）
-        // ...
-        
+        postElement.dataset.postId = post.id;
+
+        let postContent = document.createElement('div');
+        postContent.classList.add('post-content');
+        postContent.textContent = post.content;
+        postElement.appendChild(postContent);
+
+        // 新增回复展示部分
+        if (Array.isArray(post.replies) && post.replies.length > 0) {
+            let repliesContainer = document.createElement('div');
+            repliesContainer.classList.add('replies');
+
+            post.replies.forEach(reply => {
+                let replyElement = document.createElement('div');
+                replyElement.classList.add('reply');
+                replyElement.textContent = reply.content;
+
+                repliesContainer.appendChild(replyElement);
+            });
+
+            postElement.appendChild(repliesContainer);
+        }
+
+        let replyButton = document.createElement('button');
+        replyButton.textContent = '回复';
+        replyButton.onclick = () => replyPost(post.id);
+        postElement.appendChild(replyButton);
+
         postsContainer.appendChild(postElement);
     });
 }
