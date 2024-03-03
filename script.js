@@ -120,8 +120,6 @@ function displayPosts(posts = []) {
             <div class="post-content">${post.content}</div>
             <button onclick="replyPost('${post.id}')">回复</button>
         `;
-     // 添加回复内容
-  
         // 在这里展示回复（假设API返回的帖子数据中包含了回复）
         // ...
 
