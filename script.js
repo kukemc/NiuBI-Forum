@@ -105,7 +105,7 @@ function getPostsFromAPI() {
 }
 
 // 调用获取帖子的函数并展示
-getPostsFromAPI()。then(displayPosts);
+getPostsFromAPI().then(displayPosts);
 
 // 展示帖子
 function displayPosts(posts = []) {
