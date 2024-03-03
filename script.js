@@ -154,3 +154,15 @@ function displayPosts(posts = []) {
 
     console.log("已完成帖子列表展示");
 }
+// 弹窗函数
+function showModal(message) {
+  $('#modal-message').text(message);
+  $('#modal').removeClass('hidden');
+  
+  $('#confirm-button').on('click', function() {
+    $('#modal').addClass('hidden');
+  });
+}
+
+// 示例调用
+showModal('这是一条提示信息！');
