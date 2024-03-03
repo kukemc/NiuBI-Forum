@@ -117,7 +117,6 @@ function displayPosts(posts = []) {
         postElement.classList.add('post');
         postElement.dataset.postId = post.id; // 添加postId作为数据属性以便后续操作
         postElement.innerHTML = `
-        console.log('${post.id}')
             <div class="post-content">${post.content}</div>
             <button onclick="replyPost('${post.id}')">回复</button>
         `;
