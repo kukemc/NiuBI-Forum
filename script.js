@@ -44,13 +44,12 @@ function submitPost() {
 }
 
 // 回复帖子
-function replyPost() {
+function replyPost(postId) {
     
     let replyContent = prompt('请输入回复内容:');
     if (replyContent === null || replyContent.trim() === '') {
         return;
     }
-    const postId = document.querySelector('div[data-post-id]');
     const postData = {
         content: replyContent,
         postId: postId
