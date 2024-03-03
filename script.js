@@ -133,9 +133,9 @@ function displayPosts(posts = []) {
 
             post.replies.forEach((reply, replyIndex) => {
                 let replyElement = document.createElement('div');
-                replyElement.classList.add('reply');
+                replyElement.classList.add('reply-content');
                 replyElement.textContent = reply.content;
-                
+
                 console.log(`帖子ID ${post.id} 的回复 ${replyIndex + 1}: ${reply.content}`);
 
                 repliesContainer.appendChild(replyElement);
