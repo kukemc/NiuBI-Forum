@@ -112,6 +112,8 @@ function displayPosts(posts = []) {
     let postsContainer = document.getElementById('posts');
     postsContainer.innerHTML = '';
 
+    console.log("开始展示帖子列表");
+
     posts.forEach((post, index) => {
         let postElement = document.createElement('div');
         postElement.classList.add('post');
@@ -122,15 +124,19 @@ function displayPosts(posts = []) {
         postContent.textContent = post.content;
         postElement.appendChild(postContent);
 
+        console.log(`正在处理帖子ID ${post.id}`);
+
         // 新增回复展示部分
         if (Array.isArray(post.replies) && post.replies.length > 0) {
             let repliesContainer = document.createElement('div');
             repliesContainer.classList.add('replies');
 
-            post.replies.forEach(reply => {
+            post.replies.forEach((reply, replyIndex) => {
                 let replyElement = document.createElement('div');
                 replyElement.classList.add('reply');
                 replyElement.textContent = reply.content;
+                
+                console.log(`帖子ID ${post.id} 的回复 ${replyIndex + 1}: ${reply.content}`);
 
                 repliesContainer.appendChild(replyElement);
             });
@@ -145,4 +151,6 @@ function displayPosts(posts = []) {
 
         postsContainer.appendChild(postElement);
     });
+
+    console.log("已完成帖子列表展示");
 }
