@@ -158,7 +158,6 @@ body {
 }
 
 .container {
-    flex-grow: 1;
     overflow-y: auto; /* 添加滚动条，防止内容溢出 */
 }
 
