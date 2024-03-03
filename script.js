@@ -145,6 +145,7 @@ function displayPosts(posts = []) {
         let replyButton = document.createElement('button');
         replyButton.textContent = '回复';
         replyButton.onclick = () => replyPost(post.id);
+        replyButton.classList.add('reply-button'); // 添加CSS类名
         postElement.appendChild(replyButton);
 
         postsContainer.appendChild(postElement);
