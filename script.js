@@ -120,7 +120,13 @@ function displayPosts(posts = []) {
             <div class="post-content">${post.content}</div>
             <button onclick="replyPost('${post.id}')">回复</button>
         `;
-
+     // 添加回复内容
+     if (post.replies.length > 0) {
+         let replyElement = document.createElement('div');
+         replyElement.classList.add('reply-content');
+         replyElement.innerHTML = post.replies.map(reply => `<div>${reply}</div>`).join(''); // 修正此行
+         postElement.appendChild(replyElement); // 添加回复内容到帖子元素中
+ }
         // 在这里展示回复（假设API返回的帖子数据中包含了回复）
         // ...
 
