@@ -43,7 +43,7 @@ function submitPost() {
 }
 
 // 回复帖子
-function replyPost(postId) {
+function replyPost() {
     
     let replyContent = prompt('请输入回复内容:');
     if (replyContent === null || replyContent.trim() === '') {
