@@ -143,13 +143,11 @@ body {
   }
 
 .body-container {
-    display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 .container {
-    display: flex;
     flex-grow: 1;
     overflow-y: auto; /* 添加滚动条，防止内容溢出 */
 }
