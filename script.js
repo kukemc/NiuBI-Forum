@@ -50,9 +50,9 @@ function replyPost(postId) {
     if (replyContent === null || replyContent.trim() === '') {
         return;
     }
-    let replyContent = document.getElementById('nameInput').value + ': ' + replyContent;
+    let replyContent1 = document.getElementById('nameInput').value + ': ' + replyContent;
     const postData = {
-        content: replyContent,
+        content: replyContent1,
         postId: postId
     };
 
