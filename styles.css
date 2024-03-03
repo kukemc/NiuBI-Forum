@@ -32,7 +32,6 @@ nav a:hover {
 }
 
 .container {
-    display: flex;
     min-height: 100%;
     padding-bottom: 40px; /* 保证底部栏不会被内容遮挡 */
 }
