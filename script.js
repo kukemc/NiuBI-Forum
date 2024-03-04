@@ -155,7 +155,7 @@ function displayPosts(posts = []) {
 
     console.log("已完成帖子列表展示");
 }
-// 弹窗函数
+
 // 弹窗函数
 function showModal(message) {
     $('#modal-message').text(message);
@@ -169,13 +169,15 @@ function showModal(message) {
     $('#confirm-button').off('click').on('click', function() {
       const modalElement = $(this).closest('#modal');
       modalElement
-        console.log("aaa");
         .removeClass('animate-modal')
         .addClass('animate-modal-out');
 
+      // 使用`animationend`事件来监听动画结束
+      modalElement.one('animationend', () => {
+        modalElement.removeClass('animate-modal-out'); // 可以在此处添加其他隐藏逻辑，如增加.hidden类
+      });
     });
 }
-
 
 
 // 当页面加载完成后（或者在DOM准备好之后），初始化确认按钮事件
