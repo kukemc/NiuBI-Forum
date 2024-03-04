@@ -332,12 +332,7 @@ body {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: center;
-  transform: translate(-50%, -50%) scale(0.1);
-  /* 在未显示时保持缩小状态 */
   opacity: 0;
-  transition:
-    opacity 0.5s cubic-bezier(0.13, 0.59, 1, 1),
-    transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* 使用弹性曲线 */
 }
 
 .btn-confirm {
@@ -378,19 +373,19 @@ body {
   animation-fill-mode: forwards;
 }
 
-#modal.animate-modal-out {
-  animation: fadeOutAndScaleDown cubic-bezier(0, 0, 1, 0.13);
-  /* 动画结束后保留最终状态 */
-  animation-fill-mode: both;
-}
-
 @keyframes fadeOutAndScaleDown {
   0% {
     opacity: 1;
-    transform: scale(1.5);
+    transform:  translate(-50%, -50%) scale(1.5);
   }
   100% {
     opacity: 0;
-    transform: scale(0.1);
+    transform:  translate(-50%, -50%) scale(0);
   }
+}
+
+#modal.animate-modal-out {
+  animation:
+    fadeOutAndScaleDown 0.5s cubic-bezier(0, 0, 0, 0.96);
+  animation-fill-mode: forwards;
 }
