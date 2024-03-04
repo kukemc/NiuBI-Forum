@@ -16,7 +16,6 @@ function submitPost() {
     let postContentHtml = showdown.makeHtml(postContentMd); // 将Markdown转换为HTML
     let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentHtml;
     // 更新postData
-    postData.content = postContentFormatted;
     
     console.log(postContent);
     
@@ -130,13 +129,10 @@ function displayPosts(posts = []) {
         postElement.classList.add('post');
         postElement.dataset.postId = post.id;
 
-        let postContent = document.createElement('div');
-        postContent.classList.add('post-content');
-        postContent.textContent = post.content;
-        postElement.appendChild(postContent);
-
+        // 将Markdown转换为HTML并添加到postContentElement
         let postContentHtml = showdown.makeHtml(post.content);
         let postContentElement = document.createElement('div');
+        postContentElement.classList.add('post-content');
         postContentElement.innerHTML = postContentHtml; // 将Markdown转换后的HTML放入元素内
         postElement.appendChild(postContentElement);
 
