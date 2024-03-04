@@ -5,7 +5,7 @@ function submitPost() {
     let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
     console.log(postContent);
     if (postContent.trim() === '') {
-        alert('帖子内容不能为空！');
+        showModal('帖子内容不能为空！');
         return;
     }
 
@@ -40,7 +40,7 @@ function submitPost() {
         });
 
     document.getElementById('postContent').value = '';
-    showModal('这是一条提示信息！');
+    showModal('发送成功');
 }
 
 // 回复帖子
@@ -74,6 +74,7 @@ function replyPost(postId) {
         })
         .then(data => {
             console.log(data);
+            showModal('回复成功！');
             // 直接获取最新帖子列表并更新显示
             getPostsFromAPI().then(displayPosts);
         })
@@ -156,7 +157,6 @@ function displayPosts(posts = []) {
 }
 // 弹窗函数
 function showModal(message) {
-    console.log("卧槽真牛逼弹窗", message);
     $('#modal-message').text(message);
     
     // 移除隐藏和隐藏动画类，添加显示动画类
@@ -183,9 +183,3 @@ $(document).ready(function() {
     $('#modal').removeClass('animate-modal').addClass('animate-hide');
   });
 });
-
-// 示例调用
-showModal('这是要展示的消息');
-
-// 示例调用
-showModal('这是一条提示信息！');
