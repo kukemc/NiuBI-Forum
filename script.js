@@ -124,6 +124,12 @@ function displayPosts(posts = []) {
         postContent.textContent = post.content;
         postElement.appendChild(postContent);
 
+        // 新增显示帖子时间的部分
+        let postTime = document.createElement('div');
+        postTime.classList.add('post-time');
+        postTime.textContent = `时间: ${post.time}`; // 假设post.time为帖子时间的字符串
+        postElement.appendChild(postTime);
+
         console.log(`正在处理帖子ID ${post.id}`);
 
         // 新增回复展示部分
@@ -152,8 +158,6 @@ function displayPosts(posts = []) {
 
         postsContainer.appendChild(postElement);
     });
-
-    console.log("已完成帖子列表展示");
 }
 
 // 弹窗函数
