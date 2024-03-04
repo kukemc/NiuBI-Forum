@@ -324,19 +324,19 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
+  min-width: 200px;
   transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: center;
   transform: translate(-50%, -50%) scale(0.1);
   /* 在未显示时保持缩小状态 */
   opacity: 0;
-  visibility: hidden;
   transition:
-    opacity 0.5s ease-in-out,
+    opacity 0.5s cubic-bezier(0.13, 0.59, 1, 1),
     transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* 使用弹性曲线 */
 }
 
@@ -359,41 +359,41 @@ body {
   opacity: 0.9;
 }
 
-/* 显示动画 */
-.animate-modal {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+/* 定义显示动画关键帧 */
+@keyframes ScaleDownAndfadeOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5); /* 这里设置缩小后的尺寸 */
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5); /* 这里设置放大后的尺寸 */
+  }
 }
 
-/* 隐藏动画 */
-.hidden,
-.animate-hide {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
-}
 
-/* 隐藏并准备淡入淡出动画 */
-#modal.hidden {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease-in-out;
-}
-
-/* 动画状态 */
-
-/* 当添加.animate-modal类时，淡入动画生效 */
 /* 显示并执行缩放与淡入动画 */
 #modal.animate-modal {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1); /* 这里恢复到正常尺寸 */
+  animation:
+    ScaleDownAndfadeOut 0.5s ease-in-out, 
+    forwards; /* 确保动画结束后保留最后一个关键帧的样式 */
 }
 
-/* 隐藏并执行淡出与缩放动画 */
-#modal.animate-hide {
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, -50%) scale(0.1); /* 再次缩回最小尺寸 */
+/* 定义消失动画关键帧 */
+@keyframes fadeOutAndScaleDown {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5); /* 这里设置缩小后的尺寸 */
+  }
+}
+
+/* 应用于需要消失的modal元素的类 */
+#modal.animate-modal-out {
+  animation:
+    fadeOutAndScaleDown 0.5s cubic-bezier(0, 0, 0, 1.05), /* 动画持续时间可以根据需求调整 */
+    forwards; /* 确保动画结束后保留最后一个关键帧的样式 */
 }
