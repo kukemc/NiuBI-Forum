@@ -2,12 +2,12 @@ let posts = []; // 这里不再手动填充数据，而是从API获取
 
 // 提交帖子
 function submitPost() {
-    let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
-    console.log(postContent);
-    if (postContent.trim() === document.getElementById('nameInput').value + ': ') {
+    if (document.getElementById('postContent').value === '') {
         showModal('帖子内容不能为空！');
         return;
     }
+    let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
+    console.log(postContent);
 
     // 构建POST请求的数据
     const postData = {
