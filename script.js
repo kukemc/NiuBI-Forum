@@ -6,6 +6,10 @@ function submitPost() {
         showModal('帖子内容不能为空！');
         return;
     }
+    if (document.getElementById('nameInput').value === '') {
+        showModal('名称不能为空！');
+        return;
+    }
     let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
     console.log(postContent);
 
