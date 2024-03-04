@@ -127,7 +127,7 @@ function displayPosts(posts = []) {
         // 新增显示帖子时间的部分
         let postTime = document.createElement('div');
         postTime.classList.add('post-time');
-        postTime.textContent = `时间: ${post.time}`; // 假设post.time为帖子时间的字符串
+        postTime.textContent = `${post.time}`; // 假设post.time为帖子时间的字符串
         postElement.appendChild(postTime);
 
         console.log(`正在处理帖子ID ${post.id}`);
