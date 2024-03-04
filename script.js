@@ -156,30 +156,31 @@ function displayPosts(posts = []) {
     console.log("已完成帖子列表展示");
 }
 // 弹窗函数
+// 弹窗函数
 function showModal(message) {
     $('#modal-message').text(message);
     
     // 移除隐藏和隐藏动画类，添加显示动画类
     $('#modal')
       .removeClass('hidden animate-hide')
-      .addClass('animate-modal')
-      // 确保模态框内容加载完成后再执行动画（可选）
-      .css('opacity', '0')
-      .one('transitionend', function() {
-        $(this).css('opacity', '');
-      });
+      .addClass('animate-modal');
 
     // 重新绑定确认按钮事件，以处理隐藏动画
     $('#confirm-button').off('click').on('click', function() {
-      $('#modal')
+      const modalElement = $(this).closest('#modal');
+      modalElement
+        console.log("aaa");
         .removeClass('animate-modal')
-        .addClass('animate-hide');
+        .addClass('animate-modal-out');
+
     });
 }
+
+
 
 // 当页面加载完成后（或者在DOM准备好之后），初始化确认按钮事件
 $(document).ready(function() {
   $('#confirm-button').on('click', function() {
-    $('#modal').removeClass('animate-modal').addClass('animate-hide');
+    $('#modal').removeClass('animate-modal').addClass('animate-modal-out');
   });
 });
