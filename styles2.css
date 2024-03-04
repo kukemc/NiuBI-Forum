@@ -360,40 +360,37 @@ body {
 }
 
 /* 定义显示动画关键帧 */
-@keyframes ScaleDownAndfadeOut {
+@keyframes ScaleDownAndfadeIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5); /* 这里设置缩小后的尺寸 */
+    transform: translate(-50%, -50%) scale(0); /* 这里设置缩小后的起始尺寸 */
   }
   100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.5); /* 这里设置放大后的尺寸 */
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5); /* 这里设置正常尺寸 */
   }
 }
-
 
 /* 显示并执行缩放与淡入动画 */
 #modal.animate-modal {
   animation:
-    ScaleDownAndfadeOut 0.5s ease-in-out, 
-    forwards; /* 确保动画结束后保留最后一个关键帧的样式 */
+    ScaleDownAndfadeIn 0.5s cubic-bezier(0, 0, 0, 0.96);
+  animation-fill-mode: forwards;
 }
 
-/* 定义消失动画关键帧 */
+#modal.animate-modal-out {
+  animation: fadeOutAndScaleDown cubic-bezier(0, 0, 1, 0.13);
+  /* 动画结束后保留最终状态 */
+  animation-fill-mode: both;
+}
+
 @keyframes fadeOutAndScaleDown {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5); /* 这里设置缩小后的尺寸 */
+    transform: scale(0);
   }
-}
-
-/* 应用于需要消失的modal元素的类 */
-#modal.animate-modal-out {
-  animation:
-    fadeOutAndScaleDown 0.5s cubic-bezier(0, 0, 0, 1.05), /* 动画持续时间可以根据需求调整 */
-    forwards; /* 确保动画结束后保留最后一个关键帧的样式 */
 }
