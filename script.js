@@ -1,5 +1,5 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
-const showdown = new showdown.Converter();
+var converter = new showdown.Converter();
 // 提交帖子
 function submitPost() {
     if (document.getElementById('postContent').value === '') {
