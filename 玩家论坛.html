@@ -78,7 +78,7 @@
                 function saveName() {
                     const name = document.getElementById("nameInput").value;
                     document.cookie = "userName=" + name + "; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/";
-                    alert("名字已保存！");
+                    showModal('名称已保存！');
                 }
 
                 // 在页面加载时检查是否有保存的名字，并填充输入框
