@@ -4,7 +4,7 @@ let posts = []; // 这里不再手动填充数据，而是从API获取
 function submitPost() {
     let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
     console.log(postContent);
-    if (postContent.trim() === '') {
+    if (postContent.trim() === document.getElementById('nameInput').value + ': ') {
         showModal('帖子内容不能为空！');
         return;
     }
