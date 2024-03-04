@@ -10,23 +10,7 @@
         <!-- 引用外部CSS文件 -->
         <link rel="stylesheet" type="text/css" href="styles2.css"></head>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js" async></script>
-        <script>
-        window.initShowdown = function () {
-            if (typeof Showdown !== 'undefined') {
-                const showdown = new Showdown.Converter({ simplifiedAutoLink: true, strikethrough: true });
-                console.log('wcnb666')
-        
-                // 在这里调用使用showdown的函数
-                // ...
-            } else {
-                console.warn('Showdown library has not finished loading yet. Retrying...');
-                setTimeout(window.initShowdown, 10); // 100ms后再次尝试
-            }
-        };
-        
-        document.querySelector('script[src*="showdown.min.js"]').addEventListener('load', initShowdown);
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
     <body>
         <div class="container">
             <div class="menu">
