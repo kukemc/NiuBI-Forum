@@ -128,12 +128,6 @@ function displayPosts(posts = []) {
         postContent.textContent = post.content;
         postElement.appendChild(postContent);
 
-        // 新增显示帖子时间的部分
-        let postTime = document.createElement('div');
-        postTime.classList.add('post-time');
-        postTime.textContent = `${post.time}`; // 假设post.time为帖子时间的字符串
-        postElement.appendChild(postTime);
-
         console.log(`正在处理帖子ID ${post.id}`);
 
         // 新增回复展示部分
@@ -154,6 +148,12 @@ function displayPosts(posts = []) {
             postElement.appendChild(repliesContainer);
         }
 
+        // 新增显示帖子时间的部分
+        let postTime = document.createElement('div');
+        postTime.classList.add('post-time');
+        postTime.textContent = `${post.time}`; // 假设post.time为帖子时间的字符串
+        postElement.appendChild(postTime);
+        
         let replyButton = document.createElement('button');
         replyButton.textContent = '回复';
         replyButton.onclick = () => replyPost(post.id);
