@@ -1,4 +1,5 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
+const showdown = new Showdown.Converter({ simplifiedAutoLink: true, strikethrough: true }); // 根据需要配置选项
 
 // 提交帖子
 function submitPost() {
@@ -11,8 +12,15 @@ function submitPost() {
         return;
     }
     let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
-    console.log(postContent);
 
+    let postContentMd = document.getElementById('postContent').value;
+    let postContentHtml = showdown.makeHtml(postContentMd); // 将Markdown转换为HTML
+    let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentHtml;
+    // 更新postData
+    postData.content = postContentFormatted;
+    
+    console.log(postContent);
+    
     // 构建POST请求的数据
     const postData = {
         content: postContent
@@ -127,6 +135,11 @@ function displayPosts(posts = []) {
         postContent.classList.add('post-content');
         postContent.textContent = post.content;
         postElement.appendChild(postContent);
+
+        let postContentHtml = showdown.makeHtml(post.content);
+        let postContentElement = document.createElement('div');
+        postContentElement.innerHTML = postContentHtml; // 将Markdown转换后的HTML放入元素内
+        postElement.appendChild(postContentElement);
 
         console.log(`正在处理帖子ID ${post.id}`);
 
