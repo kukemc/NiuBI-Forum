@@ -178,11 +178,3 @@ function showModal(message) {
       });
     });
 }
-
-
-// 当页面加载完成后（或者在DOM准备好之后），初始化确认按钮事件
-$(document).ready(function() {
-  $('#confirm-button').on('click', function() {
-    $('#modal').removeClass('animate-modal').addClass('animate-modal-out');
-  });
-});
