@@ -1,10 +1,13 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
-(function () {
+(function checkForShowdown() {
     if (typeof Showdown !== 'undefined') {
         const showdown = new Showdown.Converter({ simplifiedAutoLink: true, strikethrough: true });
-    } else {
-        console.error('Showdown library is not loaded yet.');
+        console.log(showdown,'wcnb666');
+        return;
     }
+
+    // 如果Showdown仍未加载，则在100毫秒后再次检查
+    setTimeout(checkForShowdown, 100); // 您可以根据需要调整间隔时间
 })();
 
 // 提交帖子
