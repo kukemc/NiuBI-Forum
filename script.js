@@ -1,5 +1,11 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
-const showdown = new Showdown.Converter({ simplifiedAutoLink: true, strikethrough: true }); // 根据需要配置选项
+(function () {
+    if (typeof Showdown !== 'undefined') {
+        const showdown = new Showdown.Converter({ simplifiedAutoLink: true, strikethrough: true });
+    } else {
+        console.error('Showdown library is not loaded yet.');
+    }
+})();
 
 // 提交帖子
 function submitPost() {
