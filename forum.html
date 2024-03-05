@@ -101,7 +101,7 @@
                             const imageUrl = responseJson.link;
                             const textarea = document.getElementById('postContent');
                             const currentValue = textarea.value;
-                            const markdownImage = `![](https://${imageUrl})\n`;
+                            const markdownImage = `![](${imageUrl})\n`;
                             textarea.value = currentValue + markdownImage;
                             textarea.focus(); // 保持光标位置
                         }
