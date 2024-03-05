@@ -98,10 +98,10 @@
                 	}
                 
                         function insertMarkdownImage(responseJson) {
-                            const imageUrl = responseJson.link.replace(/^https?:\/\//, '');
+                            const imageUrl = responseJson.link;
                             const textarea = document.getElementById('postContent');
                             const currentValue = textarea.value;
-                            const markdownImage = `![](${imageUrl})\n`;
+                            const markdownImage = `![](https://${imageUrl})\n`;
                             textarea.value = currentValue + markdownImage;
                             textarea.focus(); // 保持光标位置
                         }
