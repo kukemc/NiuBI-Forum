@@ -1,5 +1,11 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
 var showdown = new showdown.Converter();
+
+// 获取并添加刷新按钮事件监听
+document.getElementById('refresh-button').addEventListener('click', function() {
+    getPostsFromAPI().then(displayPosts);
+});
+
 // 提交帖子
 function submitPost() {
     if (document.getElementById('postContent').value === '') {
