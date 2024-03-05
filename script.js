@@ -177,8 +177,8 @@ function displayPosts(posts = []) {
         }
 
         // 新增显示帖子时间的部分（转换为中国时区时间格式）
-        let postTimeStr = post.time.split('.')[0]; // 移除小数秒部分
-
+        let postTimeStr = '${post.time}'
+        console.log(postTimeStr);
         let options = { 
           timeZone: 'Asia/Shanghai', // 设置为上海时区，即北京时间
           year: 'numeric',
