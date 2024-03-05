@@ -177,6 +177,8 @@ function displayPosts(posts = []) {
         }
 
         // 新增显示帖子时间的部分
+        let postTime = document.createElement('div');
+        postTime.classList.add('post-time');
         let postTimeStr = "${post.time}"; // 假设这是一个UTC时间戳
         let options = { 
           timeZone: 'Asia/Shanghai', // 设置为上海时区，即北京时间
@@ -188,9 +190,6 @@ function displayPosts(posts = []) {
         };
         let formatter = new Intl.DateTimeFormat('default', options);
         let formattedPostTime = formatter.format(new Date(postTimeStr));
-        
-        let postTime = document.createElement('div');
-        postTime.classList.add('post-time');
         postTime.textContent = formattedPostTime;
         postElement.appendChild(postTime);
         
