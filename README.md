@@ -12,7 +12,7 @@
 
 ### 技术栈
 - **前端框架/库**：html
-- **后端框架**：python
+- **后端框架/技术**：Python, Flask, SQLite, SQLAlchemy, Blueprints, Pytz, JSON, ORM, sessionmaker
 - **样式**：CSS, jquery
 - **Markdown解析**：使用了showdown将Markdown文本转换为HTML。
 
