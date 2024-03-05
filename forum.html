@@ -107,7 +107,7 @@
                 
                         function insertMarkdownImage(responseJson) {
                             const imageUrl = responseJson.link;
-                            const markdownImage = `![](https://${imageUrl})\n`; // Markdown 格式的图片链接
+                            const markdownImage = `![](\n${imageUrl})\n`; // Markdown 格式的图片链接
                             const textarea = document.getElementById('postContent');
                             const currentValue = textarea.value;
                             textarea.value = currentValue + markdownImage;
