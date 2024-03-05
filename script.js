@@ -1,8 +1,19 @@
 let posts = []; // 这里不再手动填充数据，而是从API获取
 var showdown = new showdown.Converter();
 
-// 获取并添加刷新按钮事件监听
-document.getElementById('refresh-button').addEventListener('click', function() {
+// 确保在文档加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取并添加刷新按钮事件监听
+    var refreshButton = document.getElementById('refresh-button');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', function() {
+            getPostsFromAPI().then(displayPosts);
+        });
+    } else {
+        console.error('未找到 ID 为 "refresh-button" 的元素');
+    }
+
+    // 为初始加载添加刷新功能
     getPostsFromAPI().then(displayPosts);
 });
 
