@@ -425,3 +425,13 @@ body {
     background-color: #45a049; /* 鼠标悬停时的背景颜色 */
   }
 }
+
+img {
+  max-width: 735px; /* 指定最大宽度 */
+  max-height: 500px; /* 指定最大高度 */
+  height: auto; /* 保持图片的自然高度与宽度比 */
+  width: auto; /* 同上，保持比例 */
+  display: block; /* 使图片独占一行，并消除可能的底部空白 */
+  margin: 0 auto; /* 居中显示（如果需要的话） */
+}
+
