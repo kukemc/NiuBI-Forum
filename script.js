@@ -177,12 +177,21 @@ function displayPosts(posts = []) {
         }
 
         // 新增显示帖子时间的部分
-        let postTimeStr = post.time; // 假设post.time为上述时间戳字符串
-        let postDateTime = new Date(postTimeStr);
-        let formattedPostTime = postDateTime.toLocaleString('default', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+        let postTimeStr = "2024-03-05T13:58:17.002381Z"; // 假设这是一个UTC时间戳
+        let options = { 
+          timeZone: 'Asia/Shanghai', // 设置为上海时区，即北京时间
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        };
+        let formatter = new Intl.DateTimeFormat('default', options);
+        let formattedPostTime = formatter.format(new Date(postTimeStr));
+        
         let postTime = document.createElement('div');
         postTime.classList.add('post-time');
-        postTime.textContent = formattedPostTime; // 格式化后的时间字符串
+        postTime.textContent = formattedPostTime;
         postElement.appendChild(postTime);
         
         let replyButton = document.createElement('button');
