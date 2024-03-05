@@ -176,20 +176,21 @@ function displayPosts(posts = []) {
             postElement.appendChild(repliesContainer);
         }
 
-        // 新增显示帖子时间的部分
-        let postTime = document.createElement('div');
-        postTime.classList.add('post-time');
-        let postTimeStr = "${post.time}"; // 假设这是一个UTC时间戳
+        // 新增显示帖子时间的部分（转换为中国时区时间格式）
+        let postTimeStr = post.time.split('.')[0]; // 移除小数秒部分
+        let postDateTime = new Date(postTimeStr);
         let options = { 
-          timeZone: 'Asia/Shanghai', // 设置为上海时区，即北京时间
+          timeZone: 'Asia/Shanghai', 
           year: 'numeric',
           month: '2-digit',
           day: '2-digit',
           hour: '2-digit',
           minute: '2-digit'
         };
-        let formatter = new Intl.DateTimeFormat('default', options);
-        let formattedPostTime = formatter.format(new Date(postTimeStr));
+        let formattedPostTime = new Intl.DateTimeFormat('default', options).format(postDateTime);
+
+        let postTime = document.createElement('div');
+        postTime.classList.add('post-time');
         postTime.textContent = formattedPostTime;
         postElement.appendChild(postTime);
         
