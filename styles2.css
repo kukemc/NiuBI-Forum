@@ -398,3 +398,28 @@ body {
     fadeOutAndScaleDown 0.5s cubic-bezier(0, 0, 0, 0.96);
   animation-fill-mode: forwards;
 }
+
+/* 右上角定位的刷新按钮样式 */
+.refresh-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50; /* 自定义背景颜色 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  outline: none;
+  transition: background-color 0.3s ease;
+
+  /* 图标样式 */
+  .fas {
+    margin-right: 5px;
+  }
+  
+  &:hover {
+    background-color: #45a049; /* 鼠标悬停时的背景颜色 */
+  }
+}
