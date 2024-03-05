@@ -188,8 +188,10 @@ function displayPosts(posts = []) {
           minute: '2-digit'
         };
         let formatter = new Intl.DateTimeFormat('default', options);
+        console.log(formatter);
         let formattedPostTime = formatter.format(new Date(postTimeStr));
-
+        console.log(formattedPostTime);
+        
         let postTime = document.createElement('div');
         postTime.classList.add('post-time');
         postTime.textContent = formattedPostTime;
