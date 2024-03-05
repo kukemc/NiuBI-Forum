@@ -177,7 +177,7 @@ function displayPosts(posts = []) {
         }
 
         // 新增显示帖子时间的部分
-        let postTimeStr = "2024-03-05T13:58:17.002381Z"; // 假设这是一个UTC时间戳
+        let postTimeStr = "${post.time}"; // 假设这是一个UTC时间戳
         let options = { 
           timeZone: 'Asia/Shanghai', // 设置为上海时区，即北京时间
           year: 'numeric',
