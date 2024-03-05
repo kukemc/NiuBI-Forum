@@ -141,6 +141,9 @@ function displayPosts(posts = []) {
 
     console.log("开始展示帖子列表");
 
+    // 将帖子数组反转
+    posts.reverse();
+
     posts.forEach((post, index) => {
         let postElement = document.createElement('div');
         postElement.classList.add('post');
