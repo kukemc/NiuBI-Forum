@@ -378,7 +378,7 @@ body {
 /* 显示并执行缩放与淡入动画 */
 #modal.animate-modal {
   animation:
-    ScaleDownAndfadeIn 0.5s cubic-bezier(0, 0, 0, 0.96);
+    ScaleDownAndfadeIn 0.4s cubic-bezier(0, 0, 0, 1.16);
   animation-fill-mode: forwards;
 }
 
@@ -395,15 +395,15 @@ body {
 
 #modal.animate-modal-out {
   animation:
-    fadeOutAndScaleDown 0.5s cubic-bezier(0, 0, 0, 0.96);
+    fadeOutAndScaleDown 0.3s cubic-bezier(0, 0, 1, -0.36);
   animation-fill-mode: forwards;
 }
 
 /* 右上角定位的刷新按钮样式 */
 .refresh-button {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 20px; /* 修改为距离底部20像素 */
+  right: 20px; /* 保持距离右侧20像素 */
   background-color: #4CAF50; /* 自定义背景颜色 */
   color: white;
   border: none;
