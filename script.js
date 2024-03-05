@@ -179,19 +179,22 @@ function displayPosts(posts = []) {
         // 新增显示帖子时间的部分（转换为中国时区时间格式）
         let postTimeStr = post.time.split('.')[0]; // 移除小数秒部分
         let postDateTime = new Date(postTimeStr);
-        let options = { 
-          timeZone: 'Asia/Shanghai', 
+        let fullOptions = {
+          timeZone: 'Asia/Shanghai',
           year: 'numeric',
           month: '2-digit',
           day: '2-digit',
           hour: '2-digit',
-          minute: '2-digit'
+          minute: '2-digit',
+          hour12: false,
+          timeZoneName: 'short'
         };
-        let formattedPostTime = new Intl.DateTimeFormat('default', options).format(postDateTime);
+        
+        let formattedPostTimeWithTimeZone = new Intl.DateTimeFormat('default', fullOptions).format(postDateTime);
 
         let postTime = document.createElement('div');
         postTime.classList.add('post-time');
-        postTime.textContent = formattedPostTime;
+        postTime.textContent = formattedPostTimeWithTimeZone;
         postElement.appendChild(postTime);
         
         let replyButton = document.createElement('button');
