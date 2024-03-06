@@ -54,11 +54,13 @@ function submitPost() {
     return match; // 保留原始格式，以便后续替换回data URL
   });
 
-    // 将短ID转换回data URL并替换原始数据
+  // 将短ID转换回data URL并替换原始数据
   idsToReplace.forEach(id => {
     const regex = new RegExp(`\\[${id}\\]`, 'g');
     if (imageCache.hasOwnProperty(id)) {
-      replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
+      const dataUrl = imageCache[id];
+      const markdownFormat = `![](${dataUrl})`;
+      replacedPostContent = replacedPostContent.replace(regex, markdownFormat);
     }
   });
 
