@@ -97,6 +97,7 @@ function submitPost() {
     });
   
   showModal('发送成功');
+  document.getElementById('postContent').value = '';
 }
 
 function handleImageAndTextPaste(event) {
