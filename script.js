@@ -44,7 +44,7 @@ function submitPost() {
   let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
 
   let postContentMd = document.getElementById('postContent').value;
-  let postContentFormatted = showdown.makeHtml(document.getElementById('nameInput').value + ': ' + postContentMd); // 将Markdown转换为HTML
+  let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentMd
 
   // 替换data URL为短ID
   const idsToReplace = [];
@@ -231,6 +231,7 @@ function displayPosts(posts = []) {
 
         // 将Markdown转换为HTML并添加到postContentElement
         let postContentHtml = showdown.makeHtml(post.content);
+        console.log(post.content, postContentHtml);
         let postContentElement = document.createElement('div');
         postContentElement.classList.add('post-content');
         postContentElement.innerHTML = postContentHtml; // 将Markdown转换后的HTML放入元素内
