@@ -59,7 +59,7 @@ function submitPost() {
     const regex = new RegExp(`\\[${id}\\]`, 'g');
     if (imageCache.hasOwnProperty(id)) {
       const dataUrl = imageCache[id];
-      const markdownFormat = `![](${dataUrl})`;
+      const markdownFormat = `(${dataUrl})`;
       replacedPostContent = replacedPostContent.replace(regex, markdownFormat);
     }
   });
@@ -96,7 +96,6 @@ function submitPost() {
       console.error('发送请求时出错:', error);
     });
   
-  document.getElementById('postContent').value = replacedPostContent;
   showModal('发送成功');
 }
 
