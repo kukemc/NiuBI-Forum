@@ -81,16 +81,16 @@
                         function uploadImage(file) {
                             const formData = new FormData();
                             formData.append('file', file); // 直接将File对象放入FormData
-                
-                            const headers = new Headers({
-                              'Cookie': '_ga=GA1.1.834599601.1702906322; _gcl_au=1.1.138074984.1702906322; _ga_NTLDK3J296=GS1.1.1702996850.4.0.1702997065.60.0.0; ajs_anonymous_id=anon-cgpt-b6b28bf1-0590-49e3-9f1e-a96d44fc2c5e; ajs_user_id=user-',
-                              'Origin': 'https://image.sipc.ink',
-                              'Referer': 'https://image.sipc.ink/'
-                            });
                             
                             fetch('https://image.sipc.ink/upload', {
                               method: 'POST',
-                              headers,
+                              headers: {
+                                    // 注意：这里设置Cookie可能无效，取决于CORS策略
+                                    'Cookie': '_ga=GA1.1.834599601.1702906322; _gcl_au=1.1.138074984.1702906322; _ga_NTLDK3J296=GS1.1.1702996850.4.0.1702997065.60.0.0; ajs_anonymous_id=anon-cgpt-b6b28bf1-0590-49e3-9f1e-a96d44fc2c5e; ajs_user_id=user-0P0nPx79jcA5McRQ6aOyOTGd',
+                                    // 其他非敏感请求头可以正常设置
+                                    'Origin': 'https://image.sipc.ink',
+                                    'Referer': 'https://image.sipc.ink/'
+                                  },
                               body: formData
                             })
                             .then(response => {
