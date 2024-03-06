@@ -50,11 +50,9 @@ function submitPost() {
 
   // 替换data URL为短ID
   const idsToReplace = [];
-  let replacedPostContent = postContentFormatted.replace(/!\[.*?\]\(data:.*?;base64,.*?\)/g, (match) => {
-    const id = generateShortId();
-    imageCache[id] = match; // 将data URL缓存到本地
+  let replacedPostContent = postContentFormatted.replace(/!\[.*?\]\[(.*?)\]/g, (match, id) => {
     idsToReplace.push(id);
-    return id;
+    return match; // 保留原始格式，以便后续替换回data URL
   });
 
   console.log(replacedPostContent);
@@ -89,15 +87,15 @@ function submitPost() {
       console.error('发送请求时出错:', error);
     });
 
-  // 将短ID替换回data URL
-  const textarea = document.getElementById('postContent');
+  // 将短ID转换回data URL并替换原始数据
   idsToReplace.forEach(id => {
-    const regex = new RegExp(id, 'g');
-    replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
+    const regex = new RegExp(`\\[${id}\\]`, 'g');
+    if (imageCache.hasOwnProperty(id)) {
+      replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
+    }
   });
-  textarea.value = replacedPostContent;
-
-  document.getElementById('postContent').value = '';
+  
+  document.getElementById('postContent').value = replacedPostContent;
   showModal('发送成功');
 }
 
