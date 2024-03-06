@@ -51,54 +51,54 @@
                 <div id="postForm">
                 <textarea id="postContent" placeholder="发表你的帖子" onpaste="handleImageAndTextPaste(event)"></textarea>
                 <script>
-                    function handleImageAndTextPaste(event) {
-                        const clipboardData = event.clipboardData || window.clipboardData;
-                        if (!clipboardData) return;
+                function handleImageAndTextPaste(event) {
+                            const clipboardData = event.clipboardData || window.clipboardData;
+                            if (!clipboardData) return;
                 
-                        let hasHandledImage = false;
+                            let hasHandledImage = false;
                 
-                        for (let i = 0; i < clipboardData.items.length; i++) {
-                            let item = clipboardData.items[i];
-                            if (item.type.indexOf('image') === 0) { // 检查是否为图片类型
-                                const file = item.getAsFile();
-                                if (file) {
-                                    hasHandledImage = true;
-                                    convertImageToDataURL(file, (dataUrl) => {
-                                        insertMarkdownImage(dataUrl);
-                                    });
+                            for (let i = 0; i < clipboardData.items.length; i++) {
+                                let item = clipboardData.items[i];
+                                if (item.type.indexOf('image') === 0) { // 检查是否为图片类型
+                                    const file = item.getAsFile();
+                                    if (file) {
+                                        hasHandledImage = true;
+                                        convertImageToDataURL(file, (dataUrl) => {
+                                            insertMarkdownImage(dataUrl);
+                                        });
+                                    }
                                 }
+                            }
+                
+                            // 如果没有处理图片，则执行默认的粘贴行为
+                            if (!hasHandledImage) {
+                                setTimeout(() => {
+                                    document.execCommand('paste'); // 触发默认的粘贴行为
+                                }, 0);
+                            } else {
+                                event.preventDefault(); // 如果有图片，阻止默认的粘贴行为
                             }
                         }
                 
-                        // 如果没有处理图片，则执行默认的粘贴行为
-                        if (!hasHandledImage) {
-                            setTimeout(() => {
-                                document.execCommand('paste'); // 触发默认的粘贴行为
-                            }, 0);
-                        } else {
-                            event.preventDefault(); // 如果有图片，阻止默认的粘贴行为
+                        function convertImageToDataURL(file, callback) {
+                            const reader = new FileReader();
+                            reader.onloadend = function() {
+                                callback(reader.result);
+                            };
+                            reader.readAsDataURL(file);
                         }
-                    }
                 
-                    function convertImageToDataURL(file, callback) {
-                        const reader = new FileReader();
-                        reader.onloadend = function() {
-                            callback(reader.result);
-                        };
-                        reader.readAsDataURL(file);
-                    }
+                        function insertMarkdownImage(dataUrl) {
+                            const markdownImage = `![](data:${getMimeTypeFromDataURL(dataUrl)};base64,${dataUrl.split(',')[1]})\n`; // Markdown 格式的 Base64 图片
+                            const textarea = document.getElementById('postContent');
+                            const currentValue = textarea.value;
+                            textarea.value = currentValue + markdownImage;
+                            textarea.focus(); // 保持光标位置
+                        }
                 
-                    function insertMarkdownImage(dataUrl) {
-                        const markdownImage = `![](data:${getMimeTypeFromDataURL(dataUrl)};base64,${dataUrl.split(',')[1]})\n`; // Markdown 格式的 Base64 图片
-                        const textarea = document.getElementById('postContent');
-                        const currentValue = textarea.value;
-                        textarea.value = currentValue + markdownImage;
-                        textarea.focus(); // 保持光标位置
-                    }
-                
-                    function getMimeTypeFromDataURL(dataUrl) {
-                        return dataUrl.split(',')[0].split(':')[1].split(';')[0];
-                    }
+                        function getMimeTypeFromDataURL(dataUrl) {
+                            return dataUrl.split(',')[0].split(':')[1].split(';')[0];
+                        }
                 </script>
                     <button onclick="submitPost()">
                         发表
