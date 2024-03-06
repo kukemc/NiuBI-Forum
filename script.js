@@ -55,6 +55,14 @@ function submitPost() {
     return match; // 保留原始格式，以便后续替换回data URL
   });
 
+    // 将短ID转换回data URL并替换原始数据
+  idsToReplace.forEach(id => {
+    const regex = new RegExp(`\\[${id}\\]`, 'g');
+    if (imageCache.hasOwnProperty(id)) {
+      replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
+    }
+  });
+
   console.log(replacedPostContent);
 
   // 构建POST请求的数据
@@ -86,14 +94,6 @@ function submitPost() {
     .catch(error => {
       console.error('发送请求时出错:', error);
     });
-
-  // 将短ID转换回data URL并替换原始数据
-  idsToReplace.forEach(id => {
-    const regex = new RegExp(`\\[${id}\\]`, 'g');
-    if (imageCache.hasOwnProperty(id)) {
-      replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
-    }
-  });
   
   document.getElementById('postContent').value = replacedPostContent;
   showModal('发送成功');
