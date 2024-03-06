@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     getPostsFromAPI().then(displayPosts);
 });
 
-// 提交帖子
 // 生成短ID
 function generateShortId() {
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
