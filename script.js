@@ -139,7 +139,7 @@ function convertImageToDataURL(file, callback) {
 }
 
 function insertMarkdownImage(id) {
-  const markdownImage = `![${id}]`;
+  const markdownImage = `![][${id}]`;
   const textarea = document.getElementById('postContent');
   const currentValue = textarea.value;
   textarea.value = currentValue + markdownImage;
