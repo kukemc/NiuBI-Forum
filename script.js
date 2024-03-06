@@ -18,56 +18,138 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // 提交帖子
+// 生成短ID
+function generateShortId() {
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let id = '';
+  for (let i = 0; i < 8; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    id += characters.charAt(randomIndex);
+  }
+  return id;
+}
+
+// 本地缓存对象
+const imageCache = {};
+
+// 提交帖子
 function submitPost() {
-    if (document.getElementById('postContent').value === '') {
-        showModal('帖子内容不能为空！');
-        return;
-    }
-    if (document.getElementById('nameInput').value === '') {
-        showModal('名称不能为空！');
-        return;
-    }
-    let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
+  if (document.getElementById('postContent').value === '') {
+    showModal('帖子内容不能为空！');
+    return;
+  }
+  if (document.getElementById('nameInput').value === '') {
+    showModal('名称不能为空！');
+    return;
+  }
+  let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
 
-    let postContentMd = document.getElementById('postContent').value;
-    let postContentHtml = showdown.makeHtml(postContentMd); // 将Markdown转换为HTML
-    let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentHtml;
-    // 更新postData
-    
-    console.log(postContent);
-    
-    // 构建POST请求的数据
-    const postData = {
-        content: postContent
-    };
+  let postContentMd = document.getElementById('postContent').value;
+  let postContentHtml = showdown.makeHtml(postContentMd); // 将Markdown转换为HTML
+  let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentHtml;
 
-    // 使用fetch发送POST请求到远程API
-    fetch('https://api-save.kuke.ink/api/posts', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            // 根据实际情况添加或移除Authorization Header
-            // 'Authorization': 'Bearer your-token'
-        },
-        body: JSON.stringify(postData)
+  // 替换data URL为短ID
+  const idsToReplace = [];
+  let replacedPostContent = postContentFormatted.replace(/!\[.*?\]\(data:.*?;base64,.*?\)/g, (match) => {
+    const id = generateShortId();
+    imageCache[id] = match; // 将data URL缓存到本地
+    idsToReplace.push(id);
+    return id;
+  });
+
+  console.log(replacedPostContent);
+
+  // 构建POST请求的数据
+  const postData = {
+    content: replacedPostContent
+  };
+
+  // 使用fetch发送POST请求到远程API
+  fetch('https://api-save.kuke.ink/api/posts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // 根据实际情况添加或移除Authorization Header
+      // 'Authorization': 'Bearer your-token'
+    },
+    body: JSON.stringify(postData)
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('网络响应不正常');
+      }
+      return response.json();
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('网络响应不正常');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            // 直接获取最新帖子列表并更新显示
-            getPostsFromAPI().then(displayPosts);
-        })
-        .catch(error => {
-            console.error('发送请求时出错:', error);
-        });
+    .then(data => {
+      console.log(data);
+      // 直接获取最新帖子列表并更新显示
+      getPostsFromAPI().then(displayPosts);
+    })
+    .catch(error => {
+      console.error('发送请求时出错:', error);
+    });
 
-    document.getElementById('postContent').value = '';
-    showModal('发送成功');
+  // 将短ID替换回data URL
+  const textarea = document.getElementById('postContent');
+  idsToReplace.forEach(id => {
+    const regex = new RegExp(id, 'g');
+    replacedPostContent = replacedPostContent.replace(regex, imageCache[id]);
+  });
+  textarea.value = replacedPostContent;
+
+  document.getElementById('postContent').value = '';
+  showModal('发送成功');
+}
+
+function handleImageAndTextPaste(event) {
+  const clipboardData = event.clipboardData || window.clipboardData;
+  if (!clipboardData) return;
+
+  let hasHandledImage = false;
+
+  for (let i = 0; i < clipboardData.items.length; i++) {
+    let item = clipboardData.items[i];
+    if (item.type.indexOf('image') === 0) { // 检查是否为图片类型
+      const file = item.getAsFile();
+      if (file) {
+        hasHandledImage = true;
+        convertImageToDataURL(file, (dataUrl) => {
+          const id = generateShortId();
+          imageCache[id] = dataUrl; // 将data URL缓存到本地
+          insertMarkdownImage(id);
+        });
+      }
+    }
+  }
+
+  // 如果没有处理图片，则执行默认的粘贴行为
+  if (!hasHandledImage) {
+    setTimeout(() => {
+      document.execCommand('paste'); // 触发默认的粘贴行为
+    }, 0);
+  } else {
+    event.preventDefault(); // 如果有图片，阻止默认的粘贴行为
+  }
+}
+
+function convertImageToDataURL(file, callback) {
+  const reader = new FileReader();
+  reader.onloadend = function () {
+    callback(reader.result);
+  };
+  reader.readAsDataURL(file);
+}
+
+function insertMarkdownImage(id) {
+  const markdownImage = `![${id}]`;
+  const textarea = document.getElementById('postContent');
+  const currentValue = textarea.value;
+  textarea.value = currentValue + markdownImage;
+  textarea.focus(); // 保持光标位置
+}
+
+function getMimeTypeFromDataURL(dataUrl) {
+  return dataUrl.split(',')[0].split(':')[1].split(';')[0];
 }
 
 // 回复帖子
