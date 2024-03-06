@@ -44,8 +44,7 @@ function submitPost() {
   let postContent = document.getElementById('nameInput').value + ': ' + document.getElementById('postContent').value;
 
   let postContentMd = document.getElementById('postContent').value;
-  let postContentHtml = showdown.makeHtml(postContentMd); // 将Markdown转换为HTML
-  let postContentFormatted = document.getElementById('nameInput').value + ': ' + postContentHtml;
+  let postContentFormatted = showdown.makeHtml(document.getElementById('nameInput').value + ': ' + postContentMd); // 将Markdown转换为HTML
 
   // 替换data URL为短ID
   const idsToReplace = [];
